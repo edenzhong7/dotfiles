@@ -1,0 +1,7 @@
+alias ssr="nohup sslocal -s sp1.kingss.me -p 17935 -l 9050 -k abcd1234 -m aes-256-cfb &"
+alias http="export http_proxy=socks5://127.0.0.1:9050 https_proxy=socks5://127.0.0.1:9050"
+alias ariarpc="aria2c --enable-rpc --rpc-listen-all"
+alias modon="export GO111MODULE=on"
+alias modoff="export GO111MODULE=off"
+alias rm="rm -i"
+alias bar="aria2c --enable-rpc --rpc-listen-all"
