@@ -1,0 +1,117 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "catch2TestExplorer.userId": "fc02619076a66c9b1add6a6e8ab625d320ff807b",
+    "clang.executable": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.insidersChannel": "off",
+    "latex-workshop.message.update.show": false,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.autoClean.run": "onFailed",
+    "latex-workshop.latex.autoBuild.run": "never",
+    "editor.wordWrap": "on",
+    "latex-workshop.latex.tools": [
+        {
+            // 编译工具和命令
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "--shell-escape",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-output-directory=%DIR%/build",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%DIR%/build",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "build/%DOCFILE%"
+            ]
+        },
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex",
+            "tools": [
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "xe->bib->xe->xe",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",  
+        "*.bbl",  
+        "*.blg",  
+        "*.idx",  
+        "*.ind",  
+        "*.lof",  
+        "*.lot",  
+        "*.out",  
+        "*.toc",  
+        "*.acn",  
+        "*.acr",  
+        "*.alg",  
+        "*.glg",  
+        "*.glo",  
+        "*.gls",  
+        "*.ist",  
+        "*.fls",  
+        "*.log",  
+        "*.fdb_latexmk",  
+        "*.nav",  
+        "*.snm",  
+        "*.synctex.gz"  
+    ],
+    "latex-workshop.chktex.enabled": true,
+    "latex-workshop.intellisense.package.enabled": true,
+    "latex-workshop.intellisense.unimathsymbols.enabled": true,
+    "latex-workshop.intellisense.update.aggressive.enabled": true,
+    "latex-workshop.latex.outDir": "%DIR%/build",
+    "catch2TestExplorer.logSentry": "disable_1",
+    "zenMode.hideLineNumbers": false,
+    "zenMode.restore": true,
+    "editor.minimap.enabled": false,
+    "python.jediEnabled": false,
+    "go.formatTool": "goformat",
+    "go.useLanguageServer": true,
+    "go.autocompleteUnimportedPackages": true,
+    "go.buildOnSave": "off",
+    "go.gotoSymbol.includeGoroot": true,
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.testFlags": ["-v"],
+    "git.ignoreLegacyWarning": true,
+    "python.pythonPath": "/Users/edenzhong/.virtualenvs/web/bin/python",
+    "go.lintTool": "gometalinter",
+    "files.autoGuessEncoding": true,
+    "leetcode.workspaceFolder": "/Users/edenzhong/.leetcode",
+    "leetcode.defaultLanguage": "golang",
+    "markdown.preview.breaks": true,
+    "leetcode.hint.configWebviewMarkdown": false,
+    "go.testTimeout": "3000s",
+    "window.zoomLevel": 0
+}
