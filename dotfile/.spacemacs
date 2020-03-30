@@ -46,9 +46,9 @@ This function should only modify configuration layer settings."
      lsp
      dap
 	   (dap :variables
-	         dap-mode 1
-		       dap-ui-mode 1
-		       dap-tooltip-mode 1)
+	       dap-mode 1
+		   dap-ui-mode 1
+		   dap-tooltip-mode 1)
      markdown
      multiple-cursors
      org
@@ -56,12 +56,9 @@ This function should only modify configuration layer settings."
      (shell :variables
              shell-default-height 30
              shell-default-position 'bottom)
-     latex
      spell-checking
      syntax-checking
-     (syntax-checking :variables
-                      syntax-checking-enable-by-default t
-                      syntax-checking-enable-tooltips t)
+     (syntax-checking :variables syntax-checking-enable-by-default t syntax-checking-enable-tooltips t)
      treemacs
      version-control
      (version-control :variables
@@ -69,18 +66,7 @@ This function should only modify configuration layer settings."
                       version-control-diff-side 'left)
      go
      python
-     chinese
      c-c++
-     (c-c++ :variables
-		   c-c++-adopt-subprojects t
-		   c-c++-lsp-enable-semantic-highlight 'rainbow
-		   c-c++-default-mode-for-headers 'c++-mode
-		   c++-enable-organize-includes-on-save t
-		   c-c++-enable-clang-format-on-save t
-		   c-c++-enable-google-style t
-		   c-c++-enable-google-newline t
-		   c-c++-adopt-subprojects t
-		   c-c++-backend 'lsp-clangd)
      colors
      (go :variables
          go-backend 'lsp
@@ -94,7 +80,7 @@ This function should only modify configuration layer settings."
      (colors :variables colors-enable-nyan-cat-progress-bar t colors-enable-rainbow-identifiers t)
      (auto-completion :variables auto-completion-enable-sort-by-usage t auto-completion-enable-snippets-in-popup nil :disabled-for org)
      (better-defaults :variables better-defaults-move-to-end-of-code-first t)
-   )
+     )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -103,7 +89,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(easy-hugo)
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -366,7 +352,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
 
    ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
    ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
@@ -511,9 +497,10 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq-default dotspacemacs-themes '(misterioso))
-  (setq lsp-clients-clangd-executable "/usr/local/Cellar/llvm/9.0.1/bin/clangd")
-  (setq ccls-executable "/usr/local/Cellar/ccls/0.20190823.5/bin/ccls")
-  (setq cquery-executable "/usr/local/Cellar/cquery/20180718/bin/cquery")
+  (setq lsp-clients-clangd-executable "/usr/local//Cellar/llvm/9.0.0/bin/clangd")
+  (setenv "GOPATH" "/Users/edenzhong/go")
+  (setenv "GOROOT" "/usr/local/go")
+  (setenv "PATH" "$PATH:$GOROOT/bin:$GOPATH/bin")
   (setq configuration-layer-elpa-archives
     '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
@@ -525,8 +512,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  (require 'dap-go)
-  (require 'easy-hugo)
   )
 
 (defun dotspacemacs/user-config ()
@@ -535,8 +520,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (setq easy-hugo-basedir "~/web/auroranow.xyz")
-  (setq easy-hugo-url "https://auroranow.xyz")
+  (require 'dap-go)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -552,7 +536,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(easy-hugo dap-mode bui tree-mode yasnippet-snippets yapfify xterm-color vterm unfill treemacs-magit terminal-here smeargle shell-pop rainbow-mode rainbow-identifiers pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain mwim multi-term mmm-mode markdown-toc magit-svn magit-gitflow magit-popup lsp-ui lsp-treemacs lsp-python-ms live-py-mode importmagic epc ctable concurrent htmlize helm-rtags helm-pydoc helm-org-rifle helm-org helm-lsp helm-gitignore helm-git-grep helm-company helm-c-yasnippet google-c-style godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-ycmd flycheck-rtags flycheck-pos-tip pos-tip evil-org evil-magit magit transient git-commit with-editor eshell-z eshell-prompt-extras esh-help disaster diff-hl cython-mode cquery cpp-auto-include company-ycmd ycmd request-deferred deferred company-statistics company-rtags rtags company-lsp company-go go-mode company-c-headers company-anaconda company color-identifiers-mode clang-format ccls lsp-mode markdown-mode dash-functional browse-at-remote blacken auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon symbol-overlay string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+   '(dap-mode bui tree-mode yasnippet-snippets yapfify xterm-color vterm unfill treemacs-magit terminal-here smeargle shell-pop rainbow-mode rainbow-identifiers pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain mwim multi-term mmm-mode markdown-toc magit-svn magit-gitflow magit-popup lsp-ui lsp-treemacs lsp-python-ms live-py-mode importmagic epc ctable concurrent htmlize helm-rtags helm-pydoc helm-org-rifle helm-org helm-lsp helm-gitignore helm-git-grep helm-company helm-c-yasnippet google-c-style godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-ycmd flycheck-rtags flycheck-pos-tip pos-tip evil-org evil-magit magit transient git-commit with-editor eshell-z eshell-prompt-extras esh-help disaster diff-hl cython-mode cquery cpp-auto-include company-ycmd ycmd request-deferred deferred company-statistics company-rtags rtags company-lsp company-go go-mode company-c-headers company-anaconda company color-identifiers-mode clang-format ccls lsp-mode markdown-mode dash-functional browse-at-remote blacken auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon symbol-overlay string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
