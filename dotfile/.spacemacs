@@ -45,7 +45,7 @@ This function should only modify configuration layer settings."
      helm
      lsp
      dap
-	   (dap :variables
+	 (dap :variables
 	       dap-mode 1
 		   dap-ui-mode 1
 		   dap-tooltip-mode 1)
@@ -216,20 +216,7 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
                          spacemacs-light
-                         tsdh-dark
-						 alect-dark
-						 alect-dark-alt
-						 ample-zen
-						 deeper-blue
-						 heroku
-						 misterioso
-						 niflheim
-						 sanityinc-solarized-dark
-						 sanityinc-solarized-light
-						 sanityinc-tomorrow-eighties
-						 subatomic
-						 tangotango)
-       
+                         tsdh-dark)
 
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -496,15 +483,12 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq-default dotspacemacs-themes '(misterioso))
+  (setq-default dotspacemacs-themes '(tsdh-dark))
   (setq lsp-clients-clangd-executable "/usr/local//Cellar/llvm/9.0.0/bin/clangd")
-  (setenv "GOPATH" "/Users/edenzhong/go")
-  (setenv "GOROOT" "/usr/local/go")
-  (setenv "PATH" "$PATH:$GOROOT/bin:$GOPATH/bin")
-  (setq configuration-layer-elpa-archives
-    '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-      ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-      ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+  (setq configuration-layer-elpa-archives '(
+                        ("melpa-cn" . "https://mirrors.tencent.com/elpa/melpa/")
+                        ("org-cn"   . "https://mirrors.tencent.com/elpa/org/")
+                        ("gnu-cn"   . "https://mirrors.tencent.com/elpa/gnu/")))
   )
 
 (defun dotspacemacs/user-load ()
